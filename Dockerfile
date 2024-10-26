@@ -1,6 +1,16 @@
+
+
 FROM node:18
 
+WORKDIR /app
 
-WORKDIR /myApp
 
-COPY . /myApp
+COPY package*.json ./
+RUN npm ci
+
+
+COPY . .
+RUN npm install
+
+
+CMD ["npm", "run", "start"]
