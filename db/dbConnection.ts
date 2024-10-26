@@ -1,8 +1,10 @@
 import { connect } from "mongoose";
+import * as dotenv from "dotenv"
+dotenv.config({path:"./config/.env"})
 
 
 export function dbConnection() {
-    connect('mongodb://127.0.0.1:27017/organization-system')
+    connect(process.env.MONGO_URI as string)
 .then(()=>{
     console.log('Connected to MongoDB')
 })

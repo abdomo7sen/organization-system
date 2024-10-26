@@ -18,8 +18,9 @@ const generalMessage = (entity) => ({
 });
 exports.generalMessage = generalMessage;
 exports.messages = {
-    User: Object.assign(Object.assign({}, (0, exports.generalMessage)("user")), { userSignedInSuccessfully: "User signed in", accountVerifiedSuccessfully: "Account verified successfully", mustLogin: "User must login", userNotAuthorized: "User is not authorized" }),
+    User: Object.assign(Object.assign({}, (0, exports.generalMessage)("user")), { userSignedInSuccessfully: "User signed in", accountVerifiedSuccessfully: "Account verified successfully", mustLogin: "User must login", userNotAuthorized: "User is not authorized", InvitedSuccessfully: "User invited" }),
     password: Object.assign(Object.assign({}, (0, exports.generalMessage)("password")), { passwordsNotMatch: "rePassword does not match", emailOrPasswordIncorrect: "email or password is incorrect" }),
     token: Object.assign(Object.assign({}, (0, exports.generalMessage)("token")), { invalidToken: "invalidToken", required: "token is required", invalidBearerKey: "invalidBearerKey", invalidPayload: "invalidPayload" }),
     email: Object.assign(Object.assign({}, (0, exports.generalMessage)("email")), { emailNotExists: "Email not exists", emailNotVerified: "Email not verified", accountsFound: "Accounts found" }),
+    Organization: Object.assign({}, (0, exports.generalMessage)("Organization")),
 };

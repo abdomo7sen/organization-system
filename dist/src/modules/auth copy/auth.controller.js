@@ -42,21 +42,20 @@ const dotenv = __importStar(require("dotenv"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const messages_1 = require("../../utils/common/messages");
 const appError_1 = require("../../utils/appError");
-const organization_model_1 = require("../../../db/models/organization.model");
 dotenv.config({ path: "./config/.env" });
+// const signUp=async(req:Request,res:Response,next:NextFunction)=>{
+//     const user= new User(req.body)
+//     user.save()
+//     let accessToken=jwt.sign({userId:user._id,email:user.email,role:user.role},process.env.ACCESS_KEY as string,{expiresIn:"12h"})
+//     let refreshToken=jwt.sign({userId:user._id,email:user.email,role:user.role},process.env.REFRESH_KEY as string,{expiresIn:"7D"})
+//     res.json({messages: messages.User.CreatedSuccessfully})
+// }
 const signUp = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const objData = req.body;
     const user = new user_model_1.User(objData);
     let refreshToken = jsonwebtoken_1.default.sign({ userId: user._id, email: user.email, role: user.role }, process.env.REFRESH_KEY, { expiresIn: "7D" });
     user.refreshToken = refreshToken;
     yield user.save();
-    const org = yield organization_model_1.Organization.findById(req.body.Works_for);
-    if (!org)
-        return next(new appError_1.AppError(messages_1.messages.Organization.NotFound, 404)); //+
-    else { //+
-        org.organization_members.push(user._id); //+
-        org.save();
-    } //
     let accessToken = jsonwebtoken_1.default.sign({ userId: user._id, email: user.email, role: user.role }, process.env.ACCESS_KEY, { expiresIn: "12h" });
     res.json({ messages: messages_1.messages.User.CreatedSuccessfully, accessToken });
 });

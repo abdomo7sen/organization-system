@@ -8,14 +8,27 @@ const mongoose_1 = require("mongoose");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const USER_COLLECTION_NAME = "User";
 const schema = new mongoose_1.Schema({
-    name: { type: String },
-    email: String,
-    password: String,
+    name: { type: String,
+        required: [true, "name is required"],
+        minlength: 3,
+        maxlength: 20
+    },
+    email: { type: String,
+        required: [true, "email is required"],
+        unique: true,
+    },
+    password: { type: String,
+        required: [true, "password is required"],
+        minlength: 8
+    },
     role: { type: String,
-        enum: ["admin", "user"],
+        enum: ["owner", "user"],
         default: "user"
-    }
-});
+    },
+    refreshToken: { type: String },
+    Works_for: { type: mongoose_1.Types.ObjectId },
+    access_level: { type: String }
+}, { timestamps: true, versionKey: false });
 schema.pre('save', function () {
     this.password = bcrypt_1.default.hashSync(this.password, 8);
 });

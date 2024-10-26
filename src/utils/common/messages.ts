@@ -22,7 +22,8 @@ export const messages={
         userSignedInSuccessfully:"User signed in",
         accountVerifiedSuccessfully:"Account verified successfully",
         mustLogin:"User must login",
-        userNotAuthorized:"User is not authorized"
+        userNotAuthorized:"User is not authorized",
+        InvitedSuccessfully:"User invited"
     },
     password:{...generalMessage("password"),
         passwordsNotMatch:"rePassword does not match",
@@ -40,6 +41,7 @@ export const messages={
         emailNotVerified:"Email not verified",
         accountsFound:"Accounts found"
     },
+Organization:{...generalMessage("Organization")},
 
     
 }
